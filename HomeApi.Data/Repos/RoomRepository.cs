@@ -49,9 +49,15 @@ namespace HomeApi.Data.Repos
         /// </summary>
         public async Task UpdateRoom(Room room)
         {
-            var entry = _context.Entry(room);
+            Room roomFromEntity = _context.Rooms.Where(r => r.Id == room.Id).FirstOrDefault();
+            roomFromEntity.Name = room.Name;
+            roomFromEntity.Area = room.Area;
+            roomFromEntity.GasConnected = room.GasConnected;
+            roomFromEntity.Voltage = room.Voltage;
+
+            var entry = _context.Entry(roomFromEntity);
             if (entry.State == EntityState.Detached)
-                _context.Rooms.Update(room);
+                _context.Rooms.Update(roomFromEntity);
             await _context.SaveChangesAsync();
         }
     }
