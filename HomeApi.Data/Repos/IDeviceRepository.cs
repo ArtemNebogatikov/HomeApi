@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using HomeApi.Data.Models;
+﻿using HomeApi.Data.Models;
 using HomeApi.Data.Queries;
+using System;
+using System.Threading.Tasks;
 
 namespace HomeApi.Data.Repos
 {

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentValidation;
+﻿using FluentValidation;
 using HomeApi.Contracts.Models.Devices;
+using System.Linq;
 
 namespace HomeApi.Contracts.Validation
 {
@@ -13,9 +12,9 @@ namespace HomeApi.Contracts.Validation
         /// <summary>
         /// Метод, конструктор, устанавливающий правила
         /// </summary>
-        public AddDeviceRequestValidator() 
+        public AddDeviceRequestValidator()
         {
-            /* Зададим правила валидации */ 
+            /* Зададим правила валидации */
             RuleFor(x => x.Name).NotEmpty(); // Проверим на null и на пустое свойство
             RuleFor(x => x.Manufacturer).NotEmpty();
             RuleFor(x => x.Model).NotEmpty();
@@ -24,7 +23,7 @@ namespace HomeApi.Contracts.Validation
             RuleFor(x => x.GasUsage).NotNull();
             RuleFor(x => x.RoomLocation).NotEmpty().Must(BeSupported).WithMessage($"Please choose one of the following locations: {string.Join(", ", Values.ValidRooms)}");
         }
-        
+
         /// <summary>
         ///  Метод кастомной валидации для свойства location
         /// </summary>
